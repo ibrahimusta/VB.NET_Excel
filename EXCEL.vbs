@@ -4,9 +4,13 @@ Public Class Form1
         Dim AppXls As Microsoft.Office.Interop.Excel.Application    '声明Excel对象
         Dim AppWokBook As Microsoft.Office.Interop.Excel.Workbook    '声明工作簿对象
         Dim AppSheet As New Microsoft.Office.Interop.Excel.Worksheet    '声明工作表对象
-
         AppXls = New Microsoft.Office.Interop.Excel.Application     '实例化Excel对象
-        AppXls.Workbooks.Open("C:\学生成绩.xls")                    '打开已经存在的EXCEL文件
+        Dim address as String
+        OpenFileDialog1.Filter = "XLS Dosyası (*.xlsx|Excel 97-2003 (*.xls)|*.xls|Tüm Dosyalar (*.*) |*.*" 'OpenFileDialog nesnesinin tanıyacağı uzantıları belirliyoruz
+        OpenFileDialog1.InitialDirectory = "c:\" 'OpenFileDialog nesnesine başlangıç adresi atıyoruz
+        OpenFileDialog1.ShowDialog()
+        AppXls.Workbooks.Open(OpenFileDialog1.FileName) 'OpenFileDialog nesnesinden gelen dosya      
+        'AppXls.Workbooks.Open("C:\学生成绩.xls")                    '打开已经存在的EXCEL文件
         AppXls.Visible = False                                      '使Excel不可见
 
         'AppWokBook = New Microsoft.Office.Interop.Excel.Workbook    '实例化工作簿对象
